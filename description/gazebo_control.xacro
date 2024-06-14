@@ -22,10 +22,11 @@
             <!--kinematics -->
             <!--documentation shows that it is done in pairs,
             first entry is for 0 and then second is for 1-->
-            <!--wheel seperation is between the pair of wheels,
+            <!--wheel separation is between the pair of wheels,
             front left and right, not between front and back-->
-            <wheel_seperation>0.4445</wheel_seperation>
-            <wheel_seperation>0.4445</wheel_seperation>
+            <wheel_separation>0.4445</wheel_separation>
+            <wheel_separation>0.4445</wheel_separation>
+            <!-- I spent three hours trubleshootng seperation vs separation, do not let it be you-->
 
             <wheel_diameter>0.260</wheel_diameter>
             <wheel_diameter>0.260</wheel_diameter>
