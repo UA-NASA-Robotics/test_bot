@@ -38,7 +38,7 @@
     <gazebo reference="camera_1_link">
         <material>Gazebo/Red</material>
 
-        <sensor name="camera" type="camera">
+        <sensor name="camera_1" type="camera">
             <pose> 0 0 0 0 0 0 </pose>
             <visualize>true</visualize>
             <update_rate>10</update_rate>
@@ -86,7 +86,7 @@
 <gazebo reference="camera_2_link">
     <material>Gazebo/Red</material>
 
-    <sensor name="camera" type="camera">
+    <sensor name="camera_2" type="camera">
         <pose> 0 0 0 0 0 0 </pose>
         <visualize>true</visualize>
         <update_rate>10</update_rate>
