@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:include filename='inertial_macros.xacro'/>
+    <xacro:include filename='wheel_macros.xacro'/>
 
     <xacro:property name="chassis_length" value="0.4953"/>
     <xacro:property name="chassis_width" value="0.4064"/>
@@ -69,6 +70,9 @@
         <material>Gazebo/White</material>
     </gazebo>
 
+
+    <!-- HUBS -->
+
     <!-- FRONT HUB-->
     <joint name="front_hub_joint" type="fixed">
         <parent link="base_link"/>
@@ -111,127 +115,30 @@
         <material>Gazebo/White</material>
     </gazebo>
 
+
+    <!-- WHEELS -->
+
     <!-- FRONT LEFT WHEEL LINK -->
-    <joint name="front_left_wheel_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="front_left_wheel"/>
-        <origin xyz="${bot_center_to_wheel_center_x} ${bot_center_to_wheel_center_y} 0" rpy="-${pi/2} 0 0"/>
-        <axis xyz="0 0 1"/>
-    </joint>
+    <xacro:wheel_joint position="front_left" bot_center_to_wheel_center_x="${bot_center_to_wheel_center_x}" bot_center_to_wheel_center_y="${bot_center_to_wheel_center_y}"/>
 
-    <link name="front_left_wheel">
-        <visual>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <collision>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-        </collision>
-        <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_thickness}" radius="${wheel_radius}">
-            <origin xyz="0 0 ${wheel_thickness/2}" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
-    </link>
-
-    <gazebo reference="front_left_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
+    <!-- FRONT LEFT WHEEL JOINT -->
+    <xacro:wheel position="front_left" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}"/>
 
     <!-- BACK LEFT WHEEL LINK -->
-    <joint name="back_left_wheel_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="back_left_wheel"/>
-        <origin xyz="${-bot_center_to_wheel_center_x} ${bot_center_to_wheel_center_y} 0" rpy="-${pi/2} 0 0"/>
-        <axis xyz="0 0 1"/>
-    </joint>
+    <xacro:wheel_joint position="back_left" bot_center_to_wheel_center_x="${bot_center_to_wheel_center_x}" bot_center_to_wheel_center_y="${bot_center_to_wheel_center_y}"/>
 
-    <link name="back_left_wheel">
-        <visual>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <collision>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-        </collision>
-        <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_thickness}" radius="${wheel_radius}">
-            <origin xyz="0 0 ${wheel_thickness/2}" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
-    </link>
-
-    <gazebo reference="back_left_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
+    <!-- BACK LEFT WHEEL JOINT -->
+    <xacro:wheel position="back_left" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}"/>
 
     <!-- FRONT RIGHT WHEEL LINK -->
-    <joint name="front_right_wheel_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="front_right_wheel"/>
-        <origin xyz="${bot_center_to_wheel_center_x} ${-bot_center_to_wheel_center_y} 0" rpy="${pi/2} 0 0"/>
-        <axis xyz="0 0 -1"/>
-    </joint>
+    <xacro:wheel_joint position="front_right" bot_center_to_wheel_center_x="${bot_center_to_wheel_center_x}" bot_center_to_wheel_center_y="${bot_center_to_wheel_center_y}"/>
 
-    <link name="front_right_wheel">
-        <visual>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <collision>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-        </collision>
-        <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_thickness}" radius="${wheel_radius}">
-            <origin xyz="0 0 ${wheel_thickness/2}" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
-    </link>
+    <!-- FRONT RIGHT WHEEL JOINT -->
+    <xacro:wheel position="front_right" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}"/>
 
-    <gazebo reference="front_right_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
-    
     <!-- BACK RIGHT WHEEL LINK -->
-    <joint name="back_right_wheel_joint" type="continuous">
-        <parent link="base_link"/>
-        <child link="back_right_wheel"/>
-        <origin xyz="${-bot_center_to_wheel_center_x} ${-bot_center_to_wheel_center_y} 0" rpy="${pi/2} 0 0"/>
-        <axis xyz="0 0 -1"/>
-    </joint>
+    <xacro:wheel_joint position="back_right" bot_center_to_wheel_center_x="${bot_center_to_wheel_center_x}" bot_center_to_wheel_center_y="${bot_center_to_wheel_center_y}"/>
 
-    <link name="back_right_wheel">
-        <visual>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-            <material name="blue"/>
-        </visual>
-        <collision>
-            <origin xyz="0 0 ${wheel_thickness/2}"/>
-            <geometry>
-                <cylinder radius="${wheel_radius}" length="${wheel_thickness}"/>
-            </geometry>
-        </collision>
-        <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_thickness}" radius="${wheel_radius}">
-            <origin xyz="0 0 ${wheel_thickness/2}" rpy="0 0 0"/>
-        </xacro:inertial_cylinder>
-    </link>
-
-    <gazebo reference="back_right_wheel">
-        <material>Gazebo/Blue</material>
-    </gazebo>
+    <!-- BACK RIGHT WHEEL JOINT -->
+    <xacro:wheel position="back_right" radius="${wheel_radius}" thickness="${wheel_thickness}" mass="${wheel_mass}"/>
 </robot>
