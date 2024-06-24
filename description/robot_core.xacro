@@ -39,6 +39,23 @@
 
     </link>
 
+    <xacro:arg name="use_nominal_extrinsics" default="false"/>
+    <xacro:arg name="add_plug" default="false" />
+    <xacro:arg name="use_mesh" default="true" />
+    <xacro:arg name="name" default="TEST435" />
+    <xacro:arg name="topics_ns" default="TEST435" />
+    <xacro:arg name="publish_pointcloud" default="false" />
+    <xacro:include filename="_d435.urdf.xacro" />
+ 
+    <xacro:sensor_d435 parent="base_link" use_nominal_extrinsics="$(arg use_nominal_extrinsics)" add_plug="$(arg add_plug)" use_mesh="$(arg use_mesh)" name="$(arg name)" topics_ns="$(arg topics_ns)" publish_pointcloud="$(arg publish_pointcloud)">
+      <origin xyz="0 0 1" rpy="0 0 0"/>
+    </xacro:sensor_d435>
+
+
+    <xacro:sensor_d435 name="test" topics_ns="test" parent="base_link" publish_pointcloud="true">
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:sensor_d435>  
+
     <!-- CHASSIS -->
     <!-- Bottom plate .125" not included in robot model-->
     <joint name="chassis_joint" type="fixed">
